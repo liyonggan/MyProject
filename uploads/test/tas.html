@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--第一步：自定义的标签可以放在自定义的命名空间下，可通过xmlns:命名空间名来指定-->
+<html lang="en" xmlns:mine>
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        /*第三步：自定义标签在设置样式的时候使用，"命名空间名\:标签名"*/
+        mine\:tag {
+            font-size: 16rem;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<!--第二步：自定义标签需要带命名空间名，"命名空间名:标签名"-->
+<mine:tag>11111</mine:tag>
+</body>
+</html>
