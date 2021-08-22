@@ -31,6 +31,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -129,7 +130,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                     userListVo.setCreateUserName(UserUtils.getName((userListVo.getCreateUser())));
                 }
                 // 更新人名称
-                if (userListVo.getUpdateUser() > 0) {
+                if (userListVo.getUpdateUser() != null && userListVo.getUpdateUser() > 0) {
                     userListVo.setUpdateUserName(UserUtils.getName((userListVo.getUpdateUser())));
                 }
                 userListVoList.add(userListVo);
@@ -226,8 +227,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 return JsonResult.error("当前用户名已存在");
             }
             entity.setCreateUser(ShiroUtils.getUserId());
-            entity.setCreateTime(DateUtils.now());
+            entity.setCreateTime(new Date());
             entity.setMark(1);
+            entity.setStatus(1);
             result = this.save(entity);
         }
         if (!result) {

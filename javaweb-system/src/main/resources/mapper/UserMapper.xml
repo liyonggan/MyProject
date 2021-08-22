@@ -140,15 +140,13 @@
             <include refid="Example_Where_Clause" />
         </if>
     </delete>
-    <insert id="insert" parameterType="com.javaweb.admin.my.user.user">
-        insert into user (id, real_name, nick_name,
-        gender, avatar, mobile,
-        email, birthday, dept_id,
-        level_id, position_id, country,
-        address, city_name, user_name,
-        password, salt, role_ids,
-        login_ip, create_user, update_user,
-        mark)
+    <insert id="insert" parameterType="com.javaweb.system.entity.User">
+        insert into user (id, realname, nickname, gender, avatar,
+        mobile, email, birthday, dept_id, level_id,
+        position_id, country, address, city_name, username,
+        password, salt, role_ids, login_ip, create_user,
+        update_user, mark, status, intro, sort, province_id,
+        tags, district_id, update_time, create_time)
         values (#{id,jdbcType=INTEGER}, #{realname,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
         #{gender,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
         #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{deptId,jdbcType=INTEGER},
@@ -156,7 +154,9 @@
         #{address,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
         #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{roleIds,jdbcType=VARCHAR},
         #{loginIp,jdbcType=VARCHAR}, #{createUser,jdbcType=INTEGER}, #{updateUser,jdbcType=INTEGER},
-        #{mark,jdbcType=INTEGER})
+        #{mark,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{intro,jdbcType=VARCHAR},
+        #{sort,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{tags,jdbcType=VARCHAR},
+        #{districtId,jdbcType=INTEGER}, #{updateTime,jdbcType=DATE}, #{createTime,jdbcType=DATE})
     </insert>
     <insert id="insertSelective" parameterType="com.javaweb.admin.my.user.user">
         insert into user

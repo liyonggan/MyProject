@@ -177,6 +177,7 @@ public class CityServiceImpl extends BaseServiceImpl<CityMapper, City> implement
     @Override
     public String getCityNameByCityId(Integer cityId, String delimiter) {
         List<String> nameList = new ArrayList<>();
+        if (cityId == null) return "";
         while (cityId > 1) {
             City cityInfo = cityMapper.selectById(cityId);
             if (cityInfo != null) {
