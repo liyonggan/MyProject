@@ -21,6 +21,7 @@ import com.javaweb.system.query.UserQuery;
 import com.javaweb.system.service.ICityService;
 import com.javaweb.system.service.IDeptService;
 import com.javaweb.system.service.IUserService;
+import com.javaweb.system.utils.IdGenerater;
 import com.javaweb.system.utils.UserUtils;
 import com.javaweb.system.utils.ShiroUtils;
 import com.javaweb.system.vo.UserInfoVo;
@@ -230,6 +231,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             entity.setCreateTime(new Date());
             entity.setMark(1);
             entity.setStatus(1);
+            entity.setId(IdGenerater.generaterId("USER_ID"));
             result = this.save(entity);
         }
         if (!result) {
@@ -249,6 +251,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 userRole.setCreateTime(DateUtils.now());
                 userRole.setUpdateUser(ShiroUtils.getUserId());
                 userRole.setUpdateTime(DateUtils.now());
+                userRole.setMark(1);
                 userRoleMapper.insert(userRole);
             }
         }

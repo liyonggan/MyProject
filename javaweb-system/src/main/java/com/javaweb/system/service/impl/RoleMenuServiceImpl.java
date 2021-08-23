@@ -20,10 +20,12 @@ import com.javaweb.system.common.BaseServiceImpl;
 import com.javaweb.system.dto.RolePermissionDto;
 import com.javaweb.system.entity.Menu;
 import com.javaweb.system.entity.RoleMenu;
+import com.javaweb.system.entity.User;
 import com.javaweb.system.mapper.MenuMapper;
 import com.javaweb.system.mapper.RoleMenuMapper;
 import com.javaweb.system.query.RoleMenuQuery;
 import com.javaweb.system.service.IRoleMenuService;
+import com.javaweb.system.utils.ShiroUtils;
 import com.javaweb.system.utils.UserUtils;
 import com.javaweb.system.vo.RoleMenuListVo;
 import org.springframework.beans.BeanUtils;
@@ -212,6 +214,12 @@ public class RoleMenuServiceImpl extends BaseServiceImpl<RoleMenuMapper, RoleMen
             RoleMenu roleMenu = new RoleMenu();
             roleMenu.setRoleId(rolePermissionDto.getRoleId());
             roleMenu.setMenuId(Integer.valueOf(s));
+            User user = ShiroUtils.getUserInfo();
+            if (StringUtils.isNotNull(user)) {
+                roleMenu.setCreateUser(user.getId());
+                roleMenu.setCreateTime(new Date());
+                roleMenu.setMark(1);
+            }
             roleMenuMapper.insert(roleMenu);
         }
         return JsonResult.success("操作成功");

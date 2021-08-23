@@ -83,11 +83,11 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
                     roleListVo.setStatusName(RoleConstant.ROLE_STATUS_LIST.get(roleListVo.getStatus()));
                 }
                 // 添加人名称
-                if (roleListVo.getCreateUser() > 0) {
+                if (roleListVo.getCreateUser() != null && roleListVo.getCreateUser() > 0) {
                     roleListVo.setCreateUserName(UserUtils.getName((roleListVo.getCreateUser())));
                 }
                 // 更新人名称
-                if (roleListVo.getUpdateUser() > 0) {
+                if (roleListVo.getUpdateUser() != null && roleListVo.getUpdateUser() > 0) {
                     roleListVo.setUpdateUserName(UserUtils.getName((roleListVo.getUpdateUser())));
                 }
                 roleListVoList.add(roleListVo);

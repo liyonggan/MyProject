@@ -145,6 +145,6 @@ public class LoginLogServiceImpl extends BaseServiceImpl<LoginLogMapper, LoginLo
      */
     @Override
     public void insertLoginLog(LoginLog loginLog) {
-        loginLogMapper.insertLoginLog(loginLog);
+        //loginLogMapper.insertLoginLog(loginLog);
     }
 }
