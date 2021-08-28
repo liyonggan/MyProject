@@ -157,6 +157,9 @@ public class IndexController {
         if (!userInfo.getStatus().equals(1)) {
             return JsonResult.error("您的信息已被禁用");
         }
+        if (!userInfo.getPassword().equals(CommonUtils.password(updatePasswordDto.getOldPassword()))) {
+            return JsonResult.error("您输入的旧密码不对");
+        }
         userInfo.setPassword(CommonUtils.password(updatePasswordDto.getNewPassword()));
         Integer result = userMapper.updateById(userInfo);
         if (result == 0) {

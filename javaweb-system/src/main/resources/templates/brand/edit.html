@@ -1,0 +1,131 @@
+<html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
+<div layout:fragment="content">
+	<style>
+		.layui-upload-drag {
+	    	position: relative;
+	    	padding: 10px;
+	    	border: 1px dashed #e2e2e2;
+	    	background-color: #fff;
+	    	text-align: center;
+	    	cursor: pointer;
+	    	color: #999;
+		}
+	</style>
+	<script th:inline="javascript" type="text/javascript">
+		layui.use(['upload','croppers'],function(){
+	//声明变量
+	var layer = layui.layer
+	,upload = layui.upload
+	,croppers = layui.croppers
+	,$ = layui.$;
+
+	if(true) {
+
+		//图片裁剪组件
+	    croppers.render({
+	        elem: '#btnUploadImg_avatar'
+	        ,name:"logo"
+	        ,saveW:450     //保存宽度
+	        ,saveH:450
+	        ,mark:1.0/1    //选取比例
+	        ,area:['750px','500px']  //弹窗宽度
+	        ,url: "/upload/uploadImage?name=admin"
+	        ,done: function(url){
+	        	//上传完毕回调
+	            $('#logo').val(url);
+	            $('#avatar_show_id').attr('src',url);
+	        }
+	    });
+
+	}else{
+
+		/**
+		 * 普通图片上传
+		 */
+		var uploadInst = upload.render({
+		    elem: '#btnUploadImg_avatar'
+			,url: "/upload/uploadImage?name=admin"
+			,accept:'images'
+			,acceptMime:'image/*'
+			,exts: "jpg|png|gif|bmp|jpeg"
+			,field:'file'//文件域字段名
+			,size: 1024 * 10 //最大允许上传的文件大小
+			,before: function(obj){
+				//预读本地文件
+			}
+			,done: function(res){
+				//上传完毕回调
+
+				if(res.code!=0){
+					layer.msg(res.msg,{ icon: 5 });
+					return false;
+				}
+
+				//上传成功
+				$('#avatar_show_id').attr('src', res.data);
+	    		$('#logo').val(res.data);
+			}
+			,error: function(){
+				//请求异常回调
+				return layer.msg('数据请求异常');
+			}
+		});
+
+	}
+
+});
+	</script>
+	<form class="layui-form model-form" action="" style="width:80%;">
+		<input name="id" type="hidden" th:value="${info['id']}?:0">
+		<div class="layui-form-item">
+			<label class="layui-form-label">logo：</label>
+			<div class="layui-input-block">
+				<div class="layui-upload-drag">
+					<a href="javascript:void(0);">
+						<img src="/static/assets/images/default_upload.png" id="avatar_show_id" alt="上传图片" width="90" height="90">
+					</a>
+					<input type="hidden" id="logo" name="logo" value>
+				</div>
+				<div style="margin-top:10px;">
+					<button type="button" class="layui-btn" id="btnUploadImg_avatar">
+						<i class="layui-icon layui-icon-upload"></i>
+						上传logo
+					</button>
+				</div>
+				<div class="layui-form-mid layui-word-aux">
+					建议上传尺寸450x450
+				</div>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">品牌名称：</label>
+				<div class="layui-input-inline">
+					<input name="name" th:value="${info['name']}" lay-verify="required" autocomplete="off" placeholder="请输入品牌名称" class="layui-input" type="text">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">国家/地区：</label>
+				<div class="layui-input-inline">
+					<input name="country" th:value="${info['country']}" lay-verify="required" autocomplete="off" placeholder="请输入国家/地区" class="layui-input" type="text">
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-form-item" style="width: 625px;">
+			<label class="layui-form-label">描述：</label>
+			<div class="layui-input-block">
+				<textarea name="description" placeholder="请输入备注" class="layui-textarea" th:text="${info['description']}"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item text-center model-form-footer">
+			<button class="layui-btn" lay-filter="submitForm" lay-submit>
+				保存
+			</button>
+			<button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">
+				关闭
+			</button>
+		</div>
+	</form>
+</div>
+</html>
