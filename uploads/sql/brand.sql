@@ -1,4 +1,4 @@
-create table sys_brand
+create table brand
 (
 	id  int comment '商品id',
     logo varchar(50) comment '品牌logo',

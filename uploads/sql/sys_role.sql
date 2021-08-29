@@ -1,7 +1,7 @@
 create table sys_role
 (
 	id  int comment '主键',
-	name int comment '角色名称',
+	name VARCHAR(20) comment '角色名称',
 	rules int comment '角色拥有的菜单ID，多个规则","隔开',
 	status int comment '状态：1正常 2禁用',
 	sort int comment '排序',

@@ -1,10 +1,10 @@
 # 端口配置
 server:
-  port: 9011
+  port: 9010
 #  servlet:
 #    # 项目的前缀名
 #    context-path: /javaweb
-  IMAGE_URL: http://localhost:9011
+  IMAGE_URL: http://localhost:9010
 
 spring:
   # 配置数据源
