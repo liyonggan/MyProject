@@ -19,6 +19,22 @@
 	,croppers = layui.croppers
 	,$ = layui.$;
 
+	$.ajax({
+			url:'/role/list',
+			type: "POST",
+            contentType: "application/json",
+            success:function(result){
+            	console.log("result:" + result.data);
+            	$.each(result.data,function(index,item){
+            		console.log("index:" + index);
+            		console.log("item:" + item);
+            		$('#role').append('<input name="roleIds[' + item.id + ']" lay-skin="primary" title="' + item.name + '" type="checkbox">'
+            			+ '<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><span>' + item.name + '</span><i class="layui-icon layui-icon-ok"></i></div>');
+            	})
+            	layui.form.render();
+            }
+	});
+
 	if(true) {
 
 		//图片裁剪组件
@@ -197,28 +213,28 @@
 <!--		</div>-->
 		<div class="layui-form-item layui-form-text" style="width:625px;">
 			<label class="layui-form-label">用户角色：</label>
-			<div class="layui-input-block">
+			<div id="role" class="layui-input-block">
 <!--				<widget:checkboxSingleSelect name="roleIds|name|id" sql="SELECT id,`name` FROM sys_role WHERE mark=1 ORDER BY sort ASC;" th:value="${info['roleIds']}?:[]"/>-->
-				<input name="roleIds[1]" lay-skin="primary" title="管理员" type="checkbox">
-				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">
-					<span>管理员</span>
-					<i class="layui-icon layui-icon-ok"></i>
-				</div>
-				<input name="roleIds[2]" lay-skin="primary" title="财务" type="checkbox">
-				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">
-					<span>财务</span>
-					<i class="layui-icon layui-icon-ok"></i>
-				</div>
-				<input name="roleIds[3]" lay-skin="primary" title="生成管理" type="checkbox">
-				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">
-					<span>生产管理</span>
-					<i class="layui-icon layui-icon-ok"></i>
-				</div>
-				<input name="roleIds[4]" lay-skin="primary" title="发货员" type="checkbox">
-				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">
-					<span>发货员</span>
-					<i class="layui-icon layui-icon-ok"></i>
-				</div>
+<!--				<input name="roleIds[1]" lay-skin="primary" title="管理员" type="checkbox">-->
+<!--				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">-->
+<!--					<span>管理员</span>-->
+<!--					<i class="layui-icon layui-icon-ok"></i>-->
+<!--				</div>-->
+<!--				<input name="roleIds[2]" lay-skin="primary" title="财务" type="checkbox">-->
+<!--				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">-->
+<!--					<span>财务</span>-->
+<!--					<i class="layui-icon layui-icon-ok"></i>-->
+<!--				</div>-->
+<!--				<input name="roleIds[3]" lay-skin="primary" title="生成管理" type="checkbox">-->
+<!--				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">-->
+<!--					<span>生产管理</span>-->
+<!--					<i class="layui-icon layui-icon-ok"></i>-->
+<!--				</div>-->
+<!--				<input name="roleIds[4]" lay-skin="primary" title="发货员" type="checkbox">-->
+<!--				<div class="layui-unselect layui-form-checkbox" lay-skin="primary">-->
+<!--					<span>发货员</span>-->
+<!--					<i class="layui-icon layui-icon-ok"></i>-->
+<!--				</div>-->
 			</div>
 		</div>
 		<div class="layui-form-item">

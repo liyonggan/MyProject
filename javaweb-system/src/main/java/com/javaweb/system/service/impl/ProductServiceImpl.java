@@ -124,7 +124,7 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
      */
     @Override
     public Object getInfo(Serializable id) {
-        Brand entity = (Brand) super.getInfo(id);
+        Product entity = (Product) super.getInfo(id);
         return entity;
     }
 

@@ -86,6 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         queryWrapper.eq("mark", 1);
         queryWrapper.orderByDesc("id");
 
+
         // 查询数据
         IPage<User> page = new Page<>(userQuery.getPage(), userQuery.getLimit());
         IPage<User> data = userMapper.selectPage(page, queryWrapper);

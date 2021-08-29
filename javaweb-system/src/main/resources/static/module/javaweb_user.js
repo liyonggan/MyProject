@@ -39,10 +39,6 @@ layui.use(['func'], function () {
             }
             , {field: 'mobile', width: 130, title: '手机号码', align: 'center'}
             , {field: 'email', width: 200, title: '邮箱地址', align: 'center'}
-            , {field: 'birthday', width: 120, title: '出生日期', align: 'center'}
-            , {field: 'deptName', width: 200, title: '所属部门', align: 'center'}
-            , {field: 'levelName', width: 120, title: '职级名称', align: 'center'}
-            , {field: 'positionName', width: 120, title: '岗位名称', align: 'center'}
             , {field: 'cityName', width: 200, title: '所属城市', align: 'center'}
             , {field: 'status', width: 100, title: '状态', align: 'center', templet: '#statusTpl'}
             , {field: 'sort', width: 100, title: '显示顺序', align: 'center'}

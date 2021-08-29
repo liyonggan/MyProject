@@ -66,7 +66,7 @@ public class RoleServiceImpl extends BaseServiceImpl<RoleMapper, Role> implement
             queryWrapper.eq("status", roleQuery.getStatus());
         }
         queryWrapper.eq("mark", 1);
-        queryWrapper.orderByDesc("id");
+        queryWrapper.orderByAsc("id");
 
         // 查询数据
         IPage<Role> page = new Page<>(roleQuery.getPage(), roleQuery.getLimit());

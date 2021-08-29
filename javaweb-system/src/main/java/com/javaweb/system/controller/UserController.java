@@ -6,7 +6,9 @@ import com.javaweb.common.enums.BusinessType;
 import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.entity.User;
+import com.javaweb.system.query.RoleQuery;
 import com.javaweb.system.query.UserQuery;
+import com.javaweb.system.service.IRoleService;
 import com.javaweb.system.service.IUserRoleService;
 import com.javaweb.system.service.IUserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -37,6 +39,22 @@ public class UserController extends BaseController {
     private IUserService userService;
     @Autowired
     private IUserRoleService userRoleService;
+
+    @Autowired
+    private IRoleService roleService;
+
+    /**
+     * 获取数据列表
+     *
+     * @param query 查询条件
+     * @return
+     */
+    @RequiresPermissions("sys:user:list")
+    @ResponseBody
+    @PostMapping("/role/list")
+    public JsonResult list(RoleQuery query) {
+        return roleService.getList(query);
+    }
 
     /**
      * 获取数据列表
