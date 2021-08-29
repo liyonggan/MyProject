@@ -30,6 +30,11 @@ public class ProductQuery extends BaseQuery {
     private String name;
 
     /**
+     * 品牌
+     */
+    private Integer brand;
+
+    /**
      * 状态：1正常 2停用
      */
     private Integer status;

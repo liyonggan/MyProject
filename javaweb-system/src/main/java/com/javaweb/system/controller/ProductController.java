@@ -8,8 +8,10 @@ import com.javaweb.common.utils.JsonResult;
 import com.javaweb.common.utils.StringUtils;
 import com.javaweb.system.entity.Product;
 import com.javaweb.system.entity.User;
+import com.javaweb.system.query.BrandQuery;
 import com.javaweb.system.query.ProductQuery;
 import com.javaweb.system.query.UserQuery;
+import com.javaweb.system.service.IBrandService;
 import com.javaweb.system.service.IProductService;
 import com.javaweb.system.service.IUserRoleService;
 import com.javaweb.system.service.IUserService;
@@ -37,6 +39,22 @@ public class ProductController extends BaseController {
 
     @Autowired
     private IProductService productService;
+
+    @Autowired
+    private IBrandService brandService;
+
+    /**
+     * 获取数据列表
+     *
+     * @param query 查询条件
+     * @return
+     */
+    @RequiresPermissions("sys:product:list")
+    @ResponseBody
+    @PostMapping("/brand/list")
+    public JsonResult list(BrandQuery query) {
+        return brandService.getList(query);
+    }
 
     /**
      * 获取数据列表

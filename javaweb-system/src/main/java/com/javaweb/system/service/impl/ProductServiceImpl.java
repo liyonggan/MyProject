@@ -70,9 +70,14 @@ public class ProductServiceImpl extends BaseServiceImpl<ProductMapper, Product> 
         ProductQuery productQuery = (ProductQuery) query;
         // 查询条件
         QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
-        // 岗位名称
+        // 产品名称
         if (!StringUtils.isEmpty(productQuery.getName())) {
             queryWrapper.like("name", productQuery.getName());
+        }
+
+        // 所属品牌
+        if (productQuery.getBrand() != null) {
+            queryWrapper.like("brand_id", productQuery.getBrand());
         }
         // 状态：1正常 0停用
         if (productQuery.getStatus() != null) {

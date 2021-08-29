@@ -1,7 +1,29 @@
 <html layout:decorator="public/form" xmlns:miguo="http://www.w3.org/1999/html">
 <div layout:fragment="content">
 
+	<script th:inline="javascript" type="text/javascript">
+		layui.use(['form','jquery'], function(){
+			var form = layui.from,$=layui.$;
+			$.ajax({
+				url:'/brand/list',
+				type: "POST",
+            	contentType: "application/json",
+            	success:function(result){
+            		console.log("result:" + result.data);
+            		$.each(result.data,function(index,item){
+            			console.log("index:" + index);
+            			console.log("item:" + item);
+            			console.log("id:" + item.id);
+            			console.log("name:" + item.name);
+            			$('#brandId').append('<option value="' + item.id + '">' + item.name + '</option>');
+            			$('#brand_data').append('<dd lay-value="' + item.id + '" class>' + item.name + '</dd>');
+            		})
+            		layui.form.render("select");
+            	}
+			});
+		});
 	</script>
+
 	<form class="layui-form model-form" action="" style="width:80%;">
 		<input name="id" type="hidden" th:value="${info['id']}?:0">
 		<div class="layui-form-item">
@@ -23,23 +45,22 @@
 			<div class="layui-inline">
 				<label class="layui-form-label">所属品牌：</label>
 				<div class="layui-input-inline">
-					<!--					<widget:singleSelect name="gender|1|性别|name|id" th:data="${USER_GENDER_LIST}" th:value="${info['gender']}?:3"/>-->
-					<select name="brand" id="brand" lay-verify="required" lay-search lay-filter="brand">
+					<select name="brandId" id="brandId" lay-verify="required" lay-search lay-filter="brandId">
 						<option value>【请选择品牌】</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
+<!--						<option value="1">1</option>-->
+<!--						<option value="2">2</option>-->
+<!--						<option value="3">3</option>-->
 					</select>
 					<div class="layui-form-select">
 						<div class="layui-select-title">
 							<input type="text" placeholder="【请选择品牌】" value class="layui-input">
 							<i class="layui-edge"></i>
 						</div>
-						<dl class="layui-anim layui-anim-upbit">
+						<dl class="layui-anim layui-anim-upbit" id="brand_data">
 							<dd lay-value class="layui-select-tips">【请选择品牌】</dd>
-							<dd lay-value="1" class>1</dd>
-							<dd lay-value="2" class>2</dd>
-							<dd lay-value="3" class>3</dd>
+<!--							<dd lay-value="1" class>1</dd>-->
+<!--							<dd lay-value="2" class>2</dd>-->
+<!--							<dd lay-value="3" class>3</dd>-->
 						</dl>
 					</div>
 				</div>
@@ -64,9 +85,9 @@
 				<div class="layui-input-inline">
 					<select name="unit" id="unit" lay-verify="required" lay-search lay-filter="unit">
 						<option value>【请选择币种】</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
+						<option value="1">美元</option>
+						<option value="2">人民币</option>
+						<option value="3">欧元</option>
 					</select>
 					<div class="layui-form-select">
 						<div class="layui-select-title">
@@ -75,9 +96,9 @@
 						</div>
 						<dl class="layui-anim layui-anim-upbit">
 							<dd lay-value class="layui-select-tips">【请选择币种】</dd>
-							<dd lay-value="1" class>1</dd>
-							<dd lay-value="2" class>2</dd>
-							<dd lay-value="3" class>3</dd>
+							<dd lay-value="1" class>美元</dd>
+							<dd lay-value="2" class>人民币</dd>
+							<dd lay-value="3" class>欧元</dd>
 						</dl>
 					</div>
 				</div>
