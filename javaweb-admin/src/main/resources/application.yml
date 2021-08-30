@@ -12,6 +12,22 @@ spring:
   # 是否演示模式：true是,false否
   app_debug: false
 
+logging:
+  # 对指定的包调整日志的级别(trace、debug、info、warn、error)
+  level:
+    com:
+      van: debug
+  # 如果不指定路径，则在当前项目下生成springboot.log文件
+  # 如果指定路径，则在指定路径下生成springboot.log文件
+  file: springboot.log
+  # 在当前磁盘的根路径下创建spring文件夹和里面的log文件夹；使用 spring.log 作为默认文件
+  path: /spring/log
+  pattern:
+    # 在控制台指定格式输出日志
+    console:
+    # 在文件中指定格式输出
+    file:
+
 # MyBatis
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml

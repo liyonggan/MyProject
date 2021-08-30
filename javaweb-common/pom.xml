@@ -16,6 +16,10 @@
 
     <!-- 依赖声明 -->
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
         <!--mybatis-plus 起始依赖 -->
         <dependency>
             <groupId>com.baomidou</groupId>

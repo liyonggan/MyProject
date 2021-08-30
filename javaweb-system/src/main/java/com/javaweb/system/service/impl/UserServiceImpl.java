@@ -10,10 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.javaweb.common.common.BaseQuery;
 import com.javaweb.common.config.CommonConfig;
-import com.javaweb.common.utils.CommonUtils;
-import com.javaweb.common.utils.DateUtils;
-import com.javaweb.common.utils.JsonResult;
-import com.javaweb.common.utils.StringUtils;
+import com.javaweb.common.utils.*;
 import com.javaweb.system.constant.UserConstant;
 import com.javaweb.system.entity.*;
 import com.javaweb.system.mapper.*;
@@ -26,6 +23,8 @@ import com.javaweb.system.utils.UserUtils;
 import com.javaweb.system.utils.ShiroUtils;
 import com.javaweb.system.vo.UserInfoVo;
 import com.javaweb.system.vo.UserListVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +45,8 @@ import java.util.Map;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -69,6 +70,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public JsonResult getList(BaseQuery query) {
         UserQuery userQuery = (UserQuery) query;
+        logger.debug("userQuery:" + LogUtils.toString(userQuery));
         // 查询条件
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         // 人员姓名/手机号
